@@ -11,26 +11,42 @@ const styles = StyleSheet.create({
     margin: {
         margin: 20,
     },
-    div: {
-        display: "flex",
+    boatElements: {
         flexDirection: "row",
         marginLeft: 5,
+        marginTop: 5,
+        justifyContent: "center",
+    },
+    boat: {
+        backgroundColor: 'darkseagreen',
+        borderWidth: 1,
+        borderColor: 'black',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        flex: 1,
+        margin: 10
+    },
+    parent: {
+        backgroundColor: 'whitesmoke',
+        flex: 1
     }
 });
 
 const Boat = ({name, description, icon_name, picture})=> {
     return (
-        <View>
-            <View style={styles.div}>
-                <Icon name={icon_name} size={25} color={"#3b537a"} />
-                <Text style={styles.titleText}>
+        <View style={styles.boat}>
+            <View style={[styles.boatElements, {backgroundColor: 'darkslategray'}]}>
+                <Icon name={icon_name} size={25} color={"white"} />
+                <Text style={[styles.titleText, {color:"white"}]}>
                     {name}
                 </Text>
             </View>
-            <Text>
-                {description}
-            </Text>
-            <Image source={picture} style={{width:400, height:500, alignSelf: 'center', marginTop: 5, marginBottom:20}}/>
+            <View style={[styles.boatElements, {borderWidth: 1, borderColor: 'black', backgroundColor: 'whitesmoke', padding: 5}]}>
+                <Text>
+                    {description}
+                </Text>
+            </View>
+            <Image source={picture} style={{width:380, height:500, alignSelf: 'center', marginTop: 5, marginBottom:10, borderWidth: 1, borderColor: 'whitesmoke'}}/>
         </View>
     );
 };
@@ -38,8 +54,8 @@ const Boat = ({name, description, icon_name, picture})=> {
 class AllBoats extends React.Component {
     render() {
         return (
-            <ScrollView>
-                <Text style={styles.margin}>
+            <ScrollView style={styles.parent}>
+                <Text style={[styles.titleText, {marginTop: 30}]}>
                     GetABoat - For Sale
                 </Text>
                 <Boat icon_name={"sailboat"}
